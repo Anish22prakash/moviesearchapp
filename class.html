@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #cont{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cont">
+
+    </div>
+</body>
+</html>
+<script>
+    const url="https://fakestoreapi.com/products"
+
+//   var myfunc= fetch(url) //destination
+   
+//   fetch(url).then(function(res){
+//      // console.log(res)
+
+//      return res.json();// to collect data
+//   }).then(function(res){
+//       console.log(res.data)
+//   })
+//   .catch(function(err){
+//       console.log(err)
+//   })
+
+
+
+
+//2nd method of wiriting the fetch
+
+async function getData(){
+    try{
+    let res= await fetch(url)
+
+    let user=await res.json()
+
+    console.log(user)
+    append(user)
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+getData()
+
+
+function append(data){
+   data.forEach(function(el){
+       let img=document.createElement("img")
+       img.src=el.image
+
+       let h2=document.createElement("h2")
+       h2.innerText=el.category
+
+       let p=document.createElement("h2")
+       p.innerText=el.description
+
+       let div=document.createElement("div")
+       div.append(img,h2,p)
+
+      document.getElementById("cont").append(div)
+   })
+}
+
+
+</script>
